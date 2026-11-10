@@ -1,0 +1,7 @@
+//
+// Do any local configuration here
+//
+zone "intranet.local" {
+    type master;
+    file "/etc/bind/db.intranet.local";
+};
