@@ -10,7 +10,7 @@ Primero se actualizan los repositorios y se instala `mariadb-server` con `apt`. 
 sudo apt update && sudo apt install -y mariadb-server
 ```
 
-![Actualización del sistema e instalación de MariaDB](img/ACTUALITZACIO_SISTEMA.png)
+![Actualización del sistema e instalación de MariaDB](img/ACTUALITZACIO%20SISTEMA.png)
 
 ## 2. Configuración del servidor
 
@@ -20,7 +20,7 @@ Se edita el fichero `/etc/mysql/mariadb.conf.d/50-server.cnf` y se cambia `bind-
 sudo nano /etc/mysql/mariadb.conf.d/50-server.cnf
 ```
 
-![Configuración de bind-address en 50-server.cnf](img/CONF_SERVER_CONF.png)
+![Configuración de bind-address en 50-server.cnf](img/CONF%20SERVER.CONF.png)
 
 ## 3. Comprobación del puerto 3306
 
@@ -31,7 +31,7 @@ sudo systemctl restart mariadb
 sudo ss -tulpn | grep 3306
 ```
 
-![Comprobación del puerto 3306 de MariaDB](img/comprovacio_port_maria_db.png)
+![Comprobación del puerto 3306 de MariaDB](img/comprovacio%20port%20maria%20db.png)
 
 ## 4. Creación del usuario del sistema
 
@@ -46,7 +46,7 @@ sudo usermod -aG sudo bchecker
 id bchecker
 ```
 
-![Creación del usuario bchecker](img/CONF_USUARI_BECKER.png)
+![Creación del usuario bchecker](img/CONF%20USUARI%20BECKER.png)
 
 ## 5. Creación de la base de datos
 
@@ -63,7 +63,7 @@ sudo mysql -e "GRANT ALL PRIVILEGES ON mvp_db.* TO 'bchecker'@'%';"
 sudo mysql -e "FLUSH PRIVILEGES;"
 ```
 
-![Creación de la base de datos, la tabla y el usuario](img/creacio_bbdd.png)
+![Creación de la base de datos, la tabla y el usuario](img/creacio%20bbdd.png)
 
 ## 6. Verificación del usuario
 
@@ -73,19 +73,19 @@ Para confirmar que el usuario existe se consulta la tabla `mysql.user`. Aparece 
 sudo mysql -e "SELECT User, Host FROM mysql.user WHERE User='bchecker';"
 ```
 
-![Consulta SQL del usuario bchecker](img/consulta_sql.png)
+![Consulta SQL del usuario bchecker](img/consulta%20sql.png)
 
 ## 7. Acceso a la web
 
 Desde el navegador se entra en `http://192.168.10.10/index.php`. La página muestra el mensaje "MVP FUNCIONANT CORRECTAMENT" y "Conexion BBDD a Web EXITOSA", que viene de la tabla creada antes. Con esto queda comprobado que la web llega a la base de datos.
 
-![Acceso web al MVP](img/acces_web.png)
+![Acceso web al MVP](img/acces%20web.png)
 
 ## 8. Repositorio en GitHub
 
 El repositorio `P0.0-ASIXc2AC-G04` es público y de momento solo tiene el `README.md` del primer commit.
 
-![Repositorio en GitHub](img/conf_git.png)
+![Repositorio en GitHub](img/conf%20git.png)
 
 ## 9. Estructura de carpetas
 
@@ -96,7 +96,7 @@ mkdir -p router web bbdd
 touch router/.gitkeep web/.gitkeep bbdd/.gitkeep
 ```
 
-![Creación de la estructura de carpetas](img/creacio_repo_git.png)
+![Creación de la estructura de carpetas](img/creacio%20repo%20git.png)
 
 ## 10. Commit y push
 
@@ -108,4 +108,4 @@ git commit -m "docs/structure: crea la estructura de carpetas y el README inicia
 git push origin main
 ```
 
-![Push al repositorio de GitHub](img/push_git.png)
+![Push al repositorio de GitHub](img/push%20git.png)
