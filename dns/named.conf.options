@@ -1,0 +1,15 @@
+options {
+	allow-query { any; };
+	directory "/var/cache/bind";
+};
+
+logging {
+    channel default_file {
+        file "/var/log/named/default.log" versions 3 size 5m;
+        severity info;
+        print-time yes;
+        print-severity yes;
+        print-category yes;
+    };
+    category default { default_file; };
+};
