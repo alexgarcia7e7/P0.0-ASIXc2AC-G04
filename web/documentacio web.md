@@ -1,22 +1,3 @@
-
-
-
-
-![Comprovació ping](./img/webbbb)
-
-
-
-
-
-
-
-
-
-
-![Canvi contrasenyes PHP](./img/canvi%20contrasenyes%20php.png)
-
-![Accés a la web](./img/acces%20a%20la%20web.png)
-
 Desplegament d'un MVP Web connectat a Base de Dades (Entorn DMZ/Intranet)
 Aquest repositori conté la documentació tècnica del desplegament d'una infraestructura de xarxa segmentada i la configuració d'un servidor web (Nginx + PHP) que consumeix dades d'un servidor de base de dades (MySQL).
 
@@ -57,6 +38,7 @@ Ens connectem al servidor W-NCC i actualitzem el llistat de paquets del sistema 
 
 bash
 sudo apt update
+
 ![Actualització del sistema](./img/actualitzacio%20sistema.png)
 
 3. Configuració de Xarxa i Connectivitat
@@ -86,6 +68,7 @@ Perquè l'aplicació web pugui accedir a la base de dades, creem un usuari espec
 bash
 # Creem l'usuari amb directori home i shell de bash
 sudo useradd -m -s /bin/bash bchecker
+
 ![Usuari bchecker](./img/usuari%20behecker.png)
 
 bash
@@ -102,6 +85,7 @@ Inicialment, es va crear un script senzill a /var/www/html/index.php i es va pro
 bash
 curl http://localhost/index.php
 # Resultat: Error de connexió amb B-NCC: No route to host
+
 ![Creació index.php](./img/creacio%20index.php.png)
 Fase 2: Connexió bàsica reeixida
 Un cop solucionada la xarxa (Pas 3), actualitzem el codi PHP per connectar-nos mitjançant la llibreria mysqli. Aquest codi fa una consulta a la taula test.
@@ -125,6 +109,7 @@ if ($conn->connect_error) {
     echo "<h3>Missatge des de B-NCC: " . $row['estado'] . "</h3>";
 }
 ?>
+
 ![Creació index.php funcional](./img/creacio%20index.php%20bueno.png)
 
 6. Aplicació Final i Estilització
@@ -138,6 +123,7 @@ Tractament de errors i estats buits (si la taula no té dades).
 
 Codi final (/var/www/html/index.php)
 Es va injectar el codi mitjançant una comanda cat << "EOF" per evitar problemes amb els caràcters especials de l'HTML.
+
 ![Configuració index.php](./img/configuraci%C3%B3%20index.php.png)
 ![Canvi contrasenyes PHP](./img/canvi%20contrasenyes%20php.png)
 
