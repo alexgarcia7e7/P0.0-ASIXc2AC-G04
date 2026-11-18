@@ -71,6 +71,7 @@ sudo ip link set enp2s0 up
 
 # 3. Afegim la ruta per defecte (Gateway)
 sudo ip route add default via 192.168.10.1
+
 ![Connexió 192.168.10.10](./img/conexion%20192.168.10.10.png)
 
 Un cop configurada la xarxa, comprovem que hi ha comunicació directa amb el servidor de Base de Dades (192.168.10.20):
