@@ -4,7 +4,7 @@
 
 **Infraestructura del Proyecto:** Servidores `W-NCC` (Web), `B-NCC` (Base de Datos), `R-NCC` (Router / DHCP / DNS), `F-NCC` (FTP / Git)
 
-**Periodo de Ejecución:** 14 de Octubre – 27 de Octubre
+**Periodo de Ejecución:** 14 de Octubre – 18 de Noviembre
 
 ## Resumen de Direccionamiento de Red y Servidores
 
@@ -549,11 +549,18 @@ dig @192.168.10.30 -x 192.168.10.10 +short
 | **20/10** | `B-NCC` / `R-NCC` | Reconstrucción DDL BBDD, usuario `becker`, `bind-address 0.0.0.0` e IP Forwarding/NAT en Router. | **Exitoso:** BBDD accesible y enrutamiento operativo. | 
 | **21/10** | `W-NCC` / `F-NCC` | Conexión PDO, script `canvi_contrasenyes.php`, servidor VSFTPD, SSH keys, repo Git, y despliegue inicial DHCP/DNS (`.30`). | **Exitoso:** Código seguro y servicios de ficheros/versiones listos. | 
 | **27/10** | `R-NCC` / Clientes | Depuración de interfaz DHCP en `/etc/default/isc-dhcp-server`, corrección de FQDN y registros PTR en BIND9. | **Resuelto:** Clientes reciben IP `192.168.10.50+` y resuelven `www.ncc.cat`. | 
+| **28/10** | Documentación | Definición estratégica del problema, objetivos y necesidades del proyecto (apartado 1). | **Completado:** Contexto, perfil del cliente y objetivos documentados. | 
+| **03/11** | Documentación | Análisis de mercado comparativo: Debian vs Windows Server, Apache vs Nginx vs IIS, MariaDB vs PostgreSQL, BIND9/ISC DHCP vs Microsoft (apartado 2). | **Completado:** Estudio comparativo y oportunidades identificadas. | 
+| **04/11** | Documentación | Justificación técnica de la pila tecnológica: Debian, Router dedicado, Apache + PHP, MariaDB, BIND9 + ISC DHCP, VSFTPD y Git sobre SSH (apartado 3). | **Completado:** Decisiones técnicas justificadas. | 
+| **10/11** | Documentación | Plan de prevención de riesgos del entorno informático: ergonomía, fatiga visual, riesgos eléctricos y pausas activas (apartado 4). | **Completado:** Plan de prevención documentado. | 
+| **11/11** | Documentación | Riesgos técnicos y contingencia: matriz de riesgos, RPO/RTO, protocolos de restauración y matriz RACI (apartado 5). | **Completado:** Plan de contingencia y responsabilidades definidos. | 
+| **17/11** | Documentación | Definición de SLA/SLO, KPI y scripts de validación de rendimiento HTTP, DNS y DHCP (apartado 6). | **Completado:** Criterios de rendimiento y acciones correctoras definidos. | 
+| **18/11** | Documentación | Plan de infraestructura: dimensionamiento de VMs, mapa IP, topología, DHCP/DNS, puertos y seguridad en `192.168.10.0/24` (apartado 7). | **Completado:** Inventario y direccionamiento cerrados. | 
 
 
 # Projecte 0.0 - Sprint 2: Infraestructura TI Centralitzada (NCC)
 
-## 1. Definició Estratègica del Problema, Objectius i Identificació de Necessitats
+## Sesión 5: 28/10 – 1. Definició Estratègica del Problema, Objectius i Identificació de Necessitats
 
 ### 1.1. Context i Anàlisi Exhaustiu del Problema Inicial
 
@@ -656,7 +663,7 @@ Resolució DNS  |                 | Consultes SQL /
 4. **Control de Canvis i Desplegament Segur:**
    * L'ús de Git acoblat a autenticació SSH simplifica la integració contínua del codi de l'aplicació web, garantint la reversibilitat immediata davant d'errors de codi o desplegament.
 
-## 2. Anàlisi de Mercat i Estudi Comparatiu de Solucions Existents (RA1)
+## Sesión 6: 03/11 – 2. Anàlisi de Mercat i Estudi Comparatiu de Solucions Existents (RA1)
 
 ### 2.1. Introducció i Metodologia d'Anàlisi
 
@@ -708,7 +715,7 @@ De l'estudi realitzat se n'extreuen les següents conclusions estratègiques:
 2. **Equilibri Entre Rendiment i Simplicitat Operativa:** La combinació d'Apache HTTP Server i MySQL/MariaDB sobre Linux ofereix l'entorn més estabilitzat i documentat del mercat per a aplicacions PHP, garantint un temps de resposta inferior als límits fixats en els KPIs del projecte.
 3. **Control Total de la Infraestructura de Xarxa:** L'adopció de BIND9 i ISC DHCP Server permet gestionar el rang `192.168.10.0/24` de manera transparent i directa mitjançant fitxers de configuració versionables, la qual cosa facilita l'auditoria tècnica i l'automatització.
 
-## 3. Justificació Tècnica i Estratègica de la Pila Tecnològica (RA1)
+## Sesión 7: 04/11 – 3. Justificació Tècnica i Estratègica de la Pila Tecnològica (RA1)
 
 ### 3.1. Arquitectura General del Sistema i Filosofia de Disseny
 
@@ -781,7 +788,7 @@ Per al manteniment i desplegament del codi font de la web i dels scripts d'infra
 * **Autenticació Basada en Claus Asimètriques (RSA/Ed25519):** Elimina l'ús de contrasenyes en text pla per al desplegament de codi, utilitzant un parell de claus pública/privada.
 * **Traçabilitat i Reversibilitat:** Qualsevol canvi en el codi o en la configuració queda registrat amb autor, data i descripció, permetent un retorn immediat a un estat funcional anterior (*rollback*) en cas d'error en el desplegament.
 
-## 4. Pla de Prevenció de Riscos adaptat a l'Entorn Informàtic del Projecte
+## Sesión 8: 10/11 – 4. Pla de Prevenció de Riscos adaptat a l'Entorn Informàtic del Projecte
 
 Aquest pla de prevenció està dissenyat especificament per a l'arquitectura i els perfils d'usuaris descrits. Les mesures s'orienten especialment a l'Equip d'Administració de Sistemes i TI, responsables del manteniment de la infraestructura, i a l'Usuari Final o Client Corporatiu. L'entorn de treball inclou l'operació d'una infraestructura multicapa amb cinc nodes independents sobre el segment de xarxa `192.168.10.0/24`.
 
@@ -820,7 +827,7 @@ La naturalesa estàtica i d'alta concentració en la gestió de la xarxa, el con
 * **Mobilitat cervical i espatlles:** Fer rotacions suaus del coll i rotacions d'espatlles cap endavant i cap enrere per alliberar la tensió acumulada en la part superior del tronc derivat de l'ús prolongat del teclat i la visualització de logs centralitzats.
 * **Descans mental:** Durant les pauses, s'aconsella aixecar-se de la cadira i caminar breument per afavorir la circulació sanguínia cap a les extremitats inferiors.
 
-## 5. Pla de Prevenció de Riscos Tècnics i Contingència d'Infraestructura
+## Sesión 9: 11/11 – 5. Pla de Prevenció de Riscos Tècnics i Contingència d'Infraestructura
 
 ### 5.1. Matriu d'Identificació de Riscos Tècnics, Impacte i Mitigació
 
@@ -954,7 +961,7 @@ Per evitar duplicitats o omissions durant una incidència greu, es defineix la s
 * **C (Consulted):** Persona a qui es demana assessorament o opinió tècnica.
 * **I (Informed):** Persona que rep notificació sobre el procés o l'estat.
 
-## 6. Definició i Criteris de Rendiment, Disponibilitat i SLO/SLA (RA2)
+## Sesión 10: 17/11 – 6. Definició i Criteris de Rendiment, Disponibilitat i SLO/SLA (RA2)
 
 ### 6.1. Marc d'Acords de Nivell de Servei (SLA / SLO) i Pressupost d'Error
 
@@ -1026,7 +1033,7 @@ Si els sistemes d'auditoria detecten un incompliment dels SLOs establerts, s'apl
 2. **Desviació DNS (`> 50 ms`):** Execució de `rndc flush` a `gw-ncc` per purgar la memòria cau de BIND9, comprovació de l'ús de CPU al router i reinici del servei amb `systemctl restart bind9`.
 3. **Desviació DHCP (`> 2 s`):** Purga de concessions obsoletes al fitxer `/var/lib/dhcp/dhcpd.leases` del node `gw-ncc` i verificació que el pool (`192.168.10.100 - 192.168.10.200`) no presenta col·lisions d'IPs.
 
-## 7. Pla d'Infraestructura TI Centralitzada NCC: Recursos Virtualitzats, Adreçament IP i Arquitectura de Xarxa `192.168.10.0/24`
+## Sesión 11: 18/11 – 7. Pla d'Infraestructura TI Centralitzada NCC: Recursos Virtualitzats, Adreçament IP i Arquitectura de Xarxa `192.168.10.0/24`
 
 ### 7.1. Marc de disseny i coherència amb la documentació
 
