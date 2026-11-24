@@ -12,11 +12,16 @@ Despliegue, automatización, alta disponibilidad y auditoría de seguridad de lo
 | **Rango DHCP** | `192.168.10.50` – `192.168.10.100` | Asignación dinámica de direcciones a clientes |
 | **Servidor BBDD** | *Nodo independiente* | Alojamiento del motor MySQL |
 
-## Contenido del Repositorio
+## Servicios Desplegados
 
-* [`dhcp/dhcpd.conf`](dhcp/dhcpd.conf) — Configuración de subred, rango dinámico y parámetros DNS del servidor DHCP.
-* [`dns/`](dns/) — Archivos de zona directa (`db.intranet.local`), definición de zonas (`named.conf.local`) y opciones con logging dedicado (`named.conf.options`).
-* [`ftp/vsftpd.conf`](ftp/vsftpd.conf) — Configuración del servidor FTP con aislamiento de usuarios locales (`chroot_local_user=YES`).
-* [`ssh/sshd_config`](ssh/sshd_config) — Configuración de acceso remoto con autenticación exclusiva por clave pública (`ed25519`).
-* [`systemd/`](systemd/) — Políticas de autorrecuperación (`Restart=always`) para los demonios DNS y DHCP.
-* [`docs/validacion.md`](docs/validacion.md) — **Matriz completa de validación técnica y capturas de pruebas.**
+| Servicio | Demonio | Carpeta y Documentación | Archivo Principal |
+| :--- | :--- | :--- | :--- |
+| **DHCP** | `isc-dhcp-server` | [`dhcp/`](dhcp/) | [`dhcp/dhcpd.conf`](dhcp/dhcpd.conf) |
+| **DNS** | `named` (`bind9`) | [`dns/`](dns/) | [`dns/named.conf.options`](dns/named.conf.options) |
+| **FTP** | `vsftpd` | [`ftp/`](ftp/) | [`ftp/vsftpd.conf`](ftp/vsftpd.conf) |
+| **SSH** | `ssh` (`openssh-server`) | [`ssh/`](ssh/) | [`ssh/sshd_config`](ssh/sshd_config) |
+| **Contingencia** | `systemd` overrides | [`systemd/`](systemd/) | `Restart=always` (DNS y DHCP) |
+
+## Validación y Evidencias
+
+* **[Matriz de Validación Técnica (`docs/validacion.md`)](docs/validacion.md)** — Pruebas de automatización, contingencia, monitorización, seguridad y capturas de pantalla.
